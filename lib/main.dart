@@ -41,26 +41,7 @@ class _EveryTimePageState extends State<EveryTimePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        toolbarHeight: 100,
-        title: Container(
-          child: Column(
-            children: [
-              Text('에브리타임', style: TextStyle(fontSize: 12, color: Colors.red,),),
-              Text('중앙대'),
-            ],
-          ),
-        ),
-        actions: [
-          IconButton(icon: Icon(Icons.search, color: Colors.black,), onPressed: null),
-          IconButton(icon: Icon(Icons.person_outline, color: Colors.black,), onPressed: null),
-        ],
-      ),
-      body: Scaffold(
-        body: _widgets[_currentIndex]
-      ),
+      body: _widgets[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedIconTheme: IconThemeData(color: Colors.black),
         unselectedIconTheme: IconThemeData(color: Colors.grey),

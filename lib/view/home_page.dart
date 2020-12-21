@@ -31,9 +31,25 @@ class _HomePageState extends State<HomePage>{
   ];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        toolbarHeight: 100,
+        title: Container(
+          child: Column(
+            children: [
+              Text('에브리타임', style: TextStyle(fontSize: 12, color: Colors.red,),),
+              Text('중앙대'),
+            ],
+          ),
+        ),
+        actions: [
+          IconButton(icon: Icon(Icons.search, color: Colors.black,), onPressed: null),
+          IconButton(icon: Icon(Icons.person_outline, color: Colors.black,), onPressed: null),
+        ],
+      ),
+      body: ListView(
         children: <Widget>[
           Container(//위젯
             height: 200,
@@ -46,7 +62,7 @@ class _HomePageState extends State<HomePage>{
             ),
           ),
           Container(//바로가기
-            height: 150,
+            height: 100,
             child: ListView.builder(
               itemExtent: 55,
               scrollDirection: Axis.horizontal,
@@ -56,9 +72,16 @@ class _HomePageState extends State<HomePage>{
               },
             ),
           ),
-          Container(
-            //광고에요
-          ),
+          Image.asset('assets/images/MapleStory_logo.png', height: 50, alignment: Alignment.center,),//광고
+          Container(//임시
+            margin: EdgeInsets.all(5),
+            height: MediaQuery.of(context).size.height*0.5,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.pinkAccent, width: 1),
+              color: Color(0XFFFCF8F7),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+          )
         ],
       ),
     );
@@ -109,7 +132,7 @@ class _HomePageState extends State<HomePage>{
               shape: BoxShape.circle,
               color: Color(0XFFEFEFEF),
             ),
-            child: IconButton(icon: Icon(shortcut.icon, color: shortcut.color,),iconSize: 25,),
+            child: IconButton(icon: Icon(shortcut.icon, color: shortcut.color,),iconSize: 25, onPressed: null,),
           ),
           Text(shortcut.title,),
         ],
