@@ -28,7 +28,13 @@ class PostCollection extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(title, style: TextStyle(fontSize: 20),),
-                (hasMore?Text('더 보기 >', style: TextStyle(color: Colors.red, fontSize: 12)):Container()),
+                (hasMore?
+                FlatButton(
+                  child: Text('더 보기 >', style: TextStyle(color: Colors.red, fontSize: 12)),
+                  onPressed: ()=>{print('더 보기')},
+                )
+                    :Container()
+                ),
               ],
             ),
           ),
