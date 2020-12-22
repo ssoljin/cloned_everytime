@@ -1,4 +1,5 @@
 import 'package:everytime_clone/customed_ui/post_collection.dart';
+import 'package:everytime_clone/data/current_popular_post.dart';
 import 'package:everytime_clone/data/everytime_widget.dart';
 import 'package:everytime_clone/data/preview_board.dart';
 import 'package:everytime_clone/data/shortcut.dart';
@@ -38,6 +39,11 @@ class _HomePageState extends State<HomePage>{
     PreviewBoard('새내기게시판', '아 몰라 나 여기 나가기 싫어', true),
     PreviewBoard('서울캠 장터게시판', '칼하트 후드집업👶', true),
   ];
+  List<Widget> _popularPostList = [
+    CurrentPopularPost('익명', '당신은 돌아온 학점도치와 눈을 마주쳤습니다.', '12/22 23:53', '공감을 누른다면 28일에, A와 A+로 가득 차있는 걸 볼 수 있습니다.', '서울캠 자유게시판', 414, 14),
+    CurrentPopularPost('익명', '당신은 돌아온 학점도치와 눈을 마주쳤습니다.', '12/22 23:53', '공감을 누른다면 28일에, A와 A+로 가득 차있는 걸 볼 수 있습니다.', '서울캠 자유게시판', 414, 14),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,6 +89,7 @@ class _HomePageState extends State<HomePage>{
           ),
           Image.asset('assets/images/MapleStory_logo.png', height: 50, alignment: Alignment.center,),//광고
           PostCollection('즐겨찾는 게시판', true, _boardList),
+          PostCollection('실시간 인기 글', false, _popularPostList),
         ],
       ),
     );
