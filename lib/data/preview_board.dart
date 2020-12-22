@@ -13,28 +13,31 @@ class PreviewBoard extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Row(
-                children: [
-                  Text(boardName,),
-                  Container(
-                    margin: EdgeInsets.only(left: 10),
-                    width: 200,
-                    child: Text(content,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.grey),
-                    ),
+    var newWidth = MediaQuery.of(context).size.width - boardName.length*14 - (isNew?36:0) - 50;
+    return FlatButton(
+      onPressed: ()=>{print('$boardName')},
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(boardName,),
+                Container(
+                  margin: EdgeInsets.only(left: 10),
+                  width: newWidth,
+                  child: Text(content,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Colors.grey),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            isNew?Icon(Icons.fiber_new_rounded, color: Colors.red,):Container(),
-          ],
-        )
+          ),
+          isNew?Icon(Icons.fiber_new_rounded, color: Colors.red,):Text(''),
+        ],
+      )
     );
   }
 }

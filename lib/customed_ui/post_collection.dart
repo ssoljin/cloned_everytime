@@ -33,8 +33,9 @@ class PostCollection extends StatelessWidget{
             ),
           ),
           Container(
-            margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+            margin: EdgeInsets.only(bottom: 15),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: children,
             ),
           ),

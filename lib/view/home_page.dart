@@ -33,8 +33,10 @@ class _HomePageState extends State<HomePage>{
   ];
   List<Widget> _boardList = [
     PreviewBoard('서울캠 자유게시판', '나는 메이플이 너무 좋은데 코딩이 사실 더 좋아', true),
-    PreviewBoard('비밀게시판', '183 얼굴 훈훈함 상도 술마실여자?', true),
-    PreviewBoard('졸업생 게시판', '사회생활 하기 힘드네요 상사가 너무', false),
+    PreviewBoard('비밀게시판', '시험도 끝났는데 술마실 여자? 키는 183에 얼굴은 훈훈한 편이야', true),
+    PreviewBoard('졸업생게시판', '사회생활 하기 힘드네요 상사가 너무 저를 좋아하는데 싫어하는 티를 낼 수도 없고 어떡하죠?', false),
+    PreviewBoard('새내기게시판', '아 몰라 나 여기 나가기 싫어', true),
+    PreviewBoard('서울캠 장터게시판', '칼하트 후드집업👶', true),
   ];
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,7 @@ class _HomePageState extends State<HomePage>{
       body: ListView(
         children: <Widget>[
           Container(//위젯
-            height: 200,
+            height: 175,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: _everyTimeWidgets.length,
@@ -121,7 +123,7 @@ class _HomePageState extends State<HomePage>{
       ),
     );
   }
-  
+
   GestureDetector shortcutIcon(Shortcut shortcut){
     return GestureDetector(
       child: Column(
@@ -131,7 +133,7 @@ class _HomePageState extends State<HomePage>{
               shape: BoxShape.circle,
               color: Color(0XFFEFEFEF),
             ),
-            child: IconButton(icon: Icon(shortcut.icon, color: shortcut.color,),iconSize: 25, onPressed: null,),
+            child: IconButton(icon: Icon(shortcut.icon, color: shortcut.color,),iconSize: 25, onPressed: ()=>{print('${shortcut.title}')},),
           ),
           Text(shortcut.title,),
         ],
