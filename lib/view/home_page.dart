@@ -1,4 +1,6 @@
+import 'package:everytime_clone/customed_ui/post_collection.dart';
 import 'package:everytime_clone/data/everytime_widget.dart';
+import 'package:everytime_clone/data/preview_board.dart';
 import 'package:everytime_clone/data/shortcut.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +30,11 @@ class _HomePageState extends State<HomePage>{
     Shortcut(Icons.volume_down, '학사\n공지', Colors.greenAccent),
     Shortcut(Icons.calendar_today, '학사\n일정', Colors.green),
     Shortcut(Icons.menu_book, '도서관', Colors.orange),
+  ];
+  List<Widget> _boardList = [
+    PreviewBoard('서울캠 자유게시판', '나는 메이플이 너무 좋은데 코딩이 사실 더 좋아', true),
+    PreviewBoard('비밀게시판', '183 얼굴 훈훈함 상도 술마실여자?', true),
+    PreviewBoard('졸업생 게시판', '사회생활 하기 힘드네요 상사가 너무', false),
   ];
   @override
   Widget build(BuildContext context) {
@@ -73,15 +80,7 @@ class _HomePageState extends State<HomePage>{
             ),
           ),
           Image.asset('assets/images/MapleStory_logo.png', height: 50, alignment: Alignment.center,),//광고
-          Container(//임시
-            margin: EdgeInsets.all(5),
-            height: MediaQuery.of(context).size.height*0.5,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.pinkAccent, width: 1),
-              color: Color(0XFFFCF8F7),
-              borderRadius: BorderRadius.circular(20.0),
-            ),
-          )
+          PostCollection('즐겨찾는 게시판', true, _boardList),
         ],
       ),
     );
@@ -118,7 +117,7 @@ class _HomePageState extends State<HomePage>{
           ],
         ),
         padding: EdgeInsets.all(15.0),
-        margin: EdgeInsets.only(left:15, bottom: 15),
+        margin: EdgeInsets.only(left:5, bottom: 15, right: 10),
       ),
     );
   }
