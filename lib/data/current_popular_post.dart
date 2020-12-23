@@ -20,41 +20,46 @@ class CurrentPopularPost extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(userName),
-                Text(time),
-              ],
+      margin: EdgeInsets.only(bottom: 15),
+      child: FlatButton(
+        onPressed: ()=>{print('$title')},
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(userName, style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text(time, style: TextStyle(fontSize: 13, color: Colors.grey),),
+                ],
+              ),
             ),
-          ),
-          Text(title, overflow: TextOverflow.ellipsis,),
-          Text(content, maxLines: 2, overflow: TextOverflow.ellipsis,),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(boardName),
-                Container(
-                  child: Row(
-                    children: [
-                      Icon(Icons.thumb_up_alt_outlined, color: Colors.red,),
-                      Text('$likeNum', style: TextStyle(color: Colors.red),),
-                      Icon(Icons.mode_comment_outlined, color: Colors.greenAccent,),
-                      Text('$commentNum', style: TextStyle(color: Colors.greenAccent),),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
+            Text(title??'', overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold),),
+            Text(content, maxLines: 2, overflow: TextOverflow.ellipsis,),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(boardName, style: TextStyle(fontSize: 13, color: Colors.grey),),
+                  Container(
+                    child: Row(
+                      children: [
+                        Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
+                        Text('$likeNum', style: TextStyle(color: Colors.red, fontSize: 13),),
+                        Icon(Icons.mode_comment_outlined, color: Colors.greenAccent, size: 15,),
+                        Text('$commentNum', style: TextStyle(color: Colors.greenAccent, fontSize: 13),),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
+
     );
   }
 }

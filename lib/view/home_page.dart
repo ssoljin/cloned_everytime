@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage>{
   ];
   List<Widget> _popularPostList = [
     CurrentPopularPost('익명', '당신은 돌아온 학점도치와 눈을 마주쳤습니다.', '12/22 23:53', '공감을 누른다면 28일에, A와 A+로 가득 차있는 걸 볼 수 있습니다.', '서울캠 자유게시판', 414, 14),
-    CurrentPopularPost('익명', '당신은 돌아온 학점도치와 눈을 마주쳤습니다.', '12/22 23:53', '공감을 누른다면 28일에, A와 A+로 가득 차있는 걸 볼 수 있습니다.', '서울캠 자유게시판', 414, 14),
+    CurrentPopularPost('익명', null, '12/22 23:53', '공감을 누른다면 28일에, A와 A+로 가득 차있는 걸 볼 수 있습니다.', '서울캠 자유게시판', 414, 14),
   ];
 
   @override
