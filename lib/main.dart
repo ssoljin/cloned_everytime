@@ -1,4 +1,4 @@
-import 'package:everytime_clone/view/bulletin_board_page.dart';
+import 'package:everytime_clone/view/bulletin_board_list_page.dart';
 import 'package:everytime_clone/view/campus_pick_page.dart';
 import 'package:everytime_clone/view/home_page.dart';
 import 'package:everytime_clone/view/notice_page.dart';
@@ -30,7 +30,7 @@ class EveryTimePage extends StatefulWidget {
 }
 
 class _EveryTimePageState extends State<EveryTimePage> {
-  List<Widget> _widgets = [HomePage(), TimeTablePage(), BulletinBoardPage(), NoticePage(), CampusPickPage()];
+  List<Widget> _widgets = [HomePage(), TimeTablePage(), BulletinBoardListPage(), NoticePage(), CampusPickPage()];
   int _currentIndex = 0;
   void _setIndex(int index){
     setState(() {
