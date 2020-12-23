@@ -40,17 +40,17 @@ class _HomePageState extends State<HomePage>{
     PreviewBoard('서울캠 장터게시판', '칼하트 후드집업👶', true),
   ];
   List<Widget> _popularPostList = [
-    CurrentPopularPost('익명', '당신은 돌아온 학점도치와 눈을 마주쳤습니다.', '12/22 23:53', '공감을 누른다면 28일에, A와 A+로 가득 차있는 걸 볼 수 있습니다.', '서울캠 자유게시판', 414, 14),
-    CurrentPopularPost('익명', null, '12/22 23:53', '공감을 누른다면 28일에, A와 A+로 가득 차있는 걸 볼 수 있습니다.', '서울캠 자유게시판', 414, 14),
+    CurrentPopularPost('익명', '🦔당신은 돌아온 학점도치와 눈을 마주쳤습니다.🦔', '12/22 23:53', '공감을 누른다면 28일에,\n A와 A+로 가득 차있는 걸 볼 수 있습니다.🦔', '서울캠 자유게시판', 414, 14),
+    CurrentPopularPost('익명', null, '12/22 23:53', 'ㅋㅋㅋㅋㅋ21학번들 익명으로 되어있으면 진짜 이름 안보이는줄 아는거 너무 귀엽다', '서울캠 자유게시판', 414, 14),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
+        elevation: 1,
         backgroundColor: Colors.white,
-        toolbarHeight: 100,
+        toolbarHeight: 80,
         title: Container(
           child: Column(
             children: [
