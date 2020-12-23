@@ -48,6 +48,7 @@ class CurrentPopularPost extends StatelessWidget{
                       children: [
                         Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
                         Text('$likeNum', style: TextStyle(color: Colors.red, fontSize: 13),),
+                        Text(' '),
                         Icon(Icons.mode_comment_outlined, color: Colors.greenAccent, size: 15,),
                         Text('$commentNum', style: TextStyle(color: Colors.greenAccent, fontSize: 13),),
                       ],
