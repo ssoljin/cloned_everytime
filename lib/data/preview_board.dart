@@ -1,3 +1,5 @@
+import 'package:everytime_clone/view/bulletin_board_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PreviewBoard extends StatelessWidget{
@@ -17,7 +19,7 @@ class PreviewBoard extends StatelessWidget{
     return Container(
       height: 30,
       child: FlatButton(
-          onPressed: ()=>{print('$boardName')},
+          onPressed: ()=>{Navigator.push(context, CupertinoPageRoute(builder: (context)=>BulletinBoardPage(boardName)))},
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
