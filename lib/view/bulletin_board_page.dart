@@ -42,7 +42,7 @@ class _BulletinBoardPageState extends State<BulletinBoardPage>{
         actions: [
           IconButton(icon: Icon(Icons.refresh, color: Colors.black), onPressed: null),
           IconButton(icon: Icon(Icons.search, color: Colors.black,), onPressed: null),
-          IconButton(icon: Icon(Icons.menu, color: Colors.black,), onPressed: null),
+          IconButton(icon: Icon(Icons.more_vert, color: Colors.black,), onPressed: null),
         ],
       ),
       body: ListView(
