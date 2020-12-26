@@ -1,3 +1,4 @@
+import 'package:everytime_clone/data/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -9,6 +10,23 @@ class PostPage extends StatefulWidget{
 
 class _PostPageState extends State<PostPage>{
   bool temp = true;
+  List<Widget> _comments;
+
+  @override
+  void initState() {
+    super.initState();
+    _comments=[
+      _buildComment(Comment('익명1', '분실물이라는건 원래 있었던 물건입니다. 당신은 해당사항이 없어요', '12/26 20:56', 13)),
+      _buildComment(Comment('익명2', 'ㄹㅇㅋㅋ', '12/26 20:56', 12)),
+      _buildComment(Comment('익명3', 'ㄹㅇㅋㅋ', '12/26 20:56', 0)),
+      _buildComment(Comment('익명4', '엇 저도 잃어버렸는데 어디서 찾을 수 있을까요 ㅜ', '12/26 20:56', 0)),
+      _buildComment(Comment('익명5', '저런 힘내시고', '12/26 20:56', 0)),
+      _buildComment(Comment('익명6', 'ㄹㅇㅋㅋ', '12/26 20:56', 0)),
+      _buildComment(Comment('익명7', '아 ㄹㅇㅋㅋ만 치라고 익4, 익5 눈치없냐', '12/26 20:56', 0)),
+      _buildComment(Comment('익명8', '이게 왜 핫게냐ㅋㅋㅋ', '12/26 20:56', 0)),
+      _buildComment(Comment('익명9', '노잼.', '12/26 20:56', 0)),
+    ];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +76,6 @@ class _PostPageState extends State<PostPage>{
                             Container(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
-                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     FlatButton(
                                       onPressed: ()=>{},
@@ -110,31 +127,22 @@ class _PostPageState extends State<PostPage>{
                           margin: EdgeInsets.only(top: 5, bottom: 10),
                           child: Text('여자친구 찾아요',),
                         ),
-
-                        Row(
-                          children: [
-                            Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
-                            Text('0 ', style: TextStyle(color: Colors.red, fontSize: 13),),
-                            Icon(Icons.mode_comment_outlined, color: Colors.greenAccent, size: 15,),
-                            Text('10 ', style: TextStyle(color: Colors.greenAccent, fontSize: 13),),
-                            Icon(Icons.star_border, color: Colors.yellow, size: 15,),
-                            Text('0 ', style: TextStyle(color: Colors.yellow, fontSize: 13),),
-                          ],
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          child: Row(
+                            children: [
+                              Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
+                              Text('0 ', style: TextStyle(color: Colors.red, fontSize: 13),),
+                              Icon(Icons.mode_comment_outlined, color: Colors.greenAccent, size: 15,),
+                              Text('10 ', style: TextStyle(color: Colors.greenAccent, fontSize: 13),),
+                              Icon(Icons.star_border, color: Colors.yellow, size: 15,),
+                              Text('0 ', style: TextStyle(color: Colors.yellow, fontSize: 13),),
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
-                            Text('안녕'),
 
-                          ],
+                        Column(
+                          children: _comments,
                         ),
                       ],
                     ),
@@ -191,7 +199,86 @@ class _PostPageState extends State<PostPage>{
     );
   }
 
-  Widget _buildComment(){
+  Widget _buildComment(Comment comment){
+    return Container(
+      padding: EdgeInsets.only(top: 5, left: 10, right: 10),
+      margin: EdgeInsets.only(bottom: 5),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Colors.grey,
+            width: 0.5,
+          )
+        )
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.person_outline),
+                  Text(comment.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                ],
+              ),
+              Container(
+                height: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Colors.grey,
+                  )
+                ),
+                child: Container(
+                  width: 150,
+                  child: Row(
+                    children: [
+                      IconButton(icon: Icon(Icons.mode_comment_outlined),onPressed: ()=>{},iconSize: 15,),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            left: BorderSide(
+                              color: Colors.grey,
+                            ),
+                            right: BorderSide(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        child: IconButton(icon: Icon(Icons.thumb_up_alt_outlined),onPressed: ()=>{}, iconSize: 15,),
+                      ),
 
+                      IconButton(icon: Icon(Icons.more_vert),onPressed: ()=>{}, iconSize: 15,),
+                    ],
+                  ),
+                ),
+
+              ),
+
+            ],
+          ),
+          Text(comment.content),
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(comment.time+' ', style: TextStyle(color: Colors.grey),),
+                comment.like>0?Row(
+                  children: [
+                    Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
+                    Text(' '+comment.like.toString(), style: TextStyle(color: Colors.red),),
+                  ],
+                ):Container(),
+
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    );
   }
 }
