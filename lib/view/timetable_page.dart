@@ -12,7 +12,7 @@ class _TimeTablePageState extends State<TimeTablePage>{
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        toolbarHeight: 100,
+        toolbarHeight: 80,
         title: Container(
           child: Column(
             children: [
