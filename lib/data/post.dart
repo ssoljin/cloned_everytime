@@ -9,12 +9,14 @@ class Post {
       Comment('익명4', '엇 저도 잃어버렸는데 어디서 찾을 수 있을까요 ㅜ', '12/26 20:56', 0),
       Comment('익명5', '저런 힘내시고', '12/26 20:56', 0),
     ];
+    boardName = '서울캠 자유게시판';
   }
 
   final String userName;
   final String title;
   final String content;
   final String time;
+  String boardName;
   final int likeNum;
   final int scrabNum;
   List<Comment> comments;
