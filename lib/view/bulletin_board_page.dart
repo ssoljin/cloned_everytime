@@ -1,5 +1,6 @@
 import 'package:everytime_clone/data/post.dart';
 import 'package:everytime_clone/view/post_page.dart';
+import 'package:everytime_clone/view/write_post_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,7 @@ class _BulletinBoardPageState extends State<BulletinBoardPage>{
         icon: Icon(Icons.brush, color: Colors.red,),
         label: Text('글 쓰기'),
         backgroundColor: Colors.white,
-        onPressed: ()=>{},
+        onPressed: ()=>{Navigator.push(context, CupertinoPageRoute(builder: (context)=>WritePostPage()))},
         elevation: 0.4,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
