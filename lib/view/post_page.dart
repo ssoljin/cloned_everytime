@@ -1,31 +1,27 @@
 import 'package:everytime_clone/data/comment.dart';
+import 'package:everytime_clone/data/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class PostPage extends StatefulWidget{
 
+  PostPage(this._post);
+  final Post _post;
   @override
-  _PostPageState createState() => _PostPageState();
+  _PostPageState createState() => _PostPageState(_post);
 }
 
 class _PostPageState extends State<PostPage>{
+  _PostPageState(this._post);
+  Post _post;
   bool temp = true;
   List<Widget> _comments;
 
   @override
   void initState() {
     super.initState();
-    _comments=[
-      _buildComment(Comment('익명1', '분실물이라는건 원래 있었던 물건입니다. 당신은 해당사항이 없어요', '12/26 20:56', 13)),
-      _buildComment(Comment('익명2', 'ㄹㅇㅋㅋ', '12/26 20:56', 12)),
-      _buildComment(Comment('익명3', 'ㄹㅇㅋㅋ', '12/26 20:56', 0)),
-      _buildComment(Comment('익명4', '엇 저도 잃어버렸는데 어디서 찾을 수 있을까요 ㅜ', '12/26 20:56', 0)),
-      _buildComment(Comment('익명5', '저런 힘내시고', '12/26 20:56', 0)),
-      _buildComment(Comment('익명6', 'ㄹㅇㅋㅋ', '12/26 20:56', 0)),
-      _buildComment(Comment('익명7', '아 ㄹㅇㅋㅋ만 치라고 익4, 익5 눈치없냐', '12/26 20:56', 0)),
-      _buildComment(Comment('익명8', '이게 왜 핫게냐ㅋㅋㅋ', '12/26 20:56', 0)),
-      _buildComment(Comment('익명9', '노잼.', '12/26 20:56', 0)),
-    ];
+    _comments=[];
+    _post.comments.forEach((element) {_comments+=[_buildComment(element)];});
   }
   @override
   Widget build(BuildContext context) {
@@ -46,10 +42,8 @@ class _PostPageState extends State<PostPage>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              //height: MediaQuery.of(context).size.height - MediaQuery.of(context).,
-              //margin: EdgeInsets.all(15),
               child:Container(
-                margin: EdgeInsets.all(15),
+                margin: EdgeInsets.only(left: 15, right: 15),
                 child:ListView(
                   children: [
                     Column(
@@ -66,8 +60,8 @@ class _PostPageState extends State<PostPage>{
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('익명', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                                      Text('12/26 15:18', style: TextStyle(color: Colors.grey)),
+                                      Text(_post.userName, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                                      Text(_post.time, style: TextStyle(color: Colors.grey)),
                                     ],
                                   ),
                                 ],
@@ -122,24 +116,34 @@ class _PostPageState extends State<PostPage>{
                             ),
                           ],
                         ),
-                        Text('여기가 분실물 게시판 맞나요?', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
                         Container(
-                          margin: EdgeInsets.only(top: 5, bottom: 10),
-                          child: Text('여자친구 찾아요',),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          child: Row(
+                          margin: EdgeInsets.only(left: 10, right: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
-                              Text('0 ', style: TextStyle(color: Colors.red, fontSize: 13),),
-                              Icon(Icons.mode_comment_outlined, color: Colors.greenAccent, size: 15,),
-                              Text('10 ', style: TextStyle(color: Colors.greenAccent, fontSize: 13),),
-                              Icon(Icons.star_border, color: Colors.yellow, size: 15,),
-                              Text('0 ', style: TextStyle(color: Colors.yellow, fontSize: 13),),
+                              _post.title!=null?Text(_post.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),):Container(),
+                              Container(
+                                margin: EdgeInsets.only(top: 5, bottom: 10),
+                                child: Text(_post.content,),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 10),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
+                                    Text(_post.likeNum.toString()+' ', style: TextStyle(color: Colors.red, fontSize: 13),),
+                                    Icon(Icons.mode_comment_outlined, color: Colors.greenAccent, size: 15,),
+                                    Text(_post.comments.length.toString()+' ', style: TextStyle(color: Colors.greenAccent, fontSize: 13),),
+                                    Icon(Icons.star_border, color: Colors.yellow, size: 15,),
+                                    Text(_post.scrabNum.toString()+' ', style: TextStyle(color: Colors.yellow, fontSize: 13),),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
+
+
 
                         Column(
                           children: _comments,
