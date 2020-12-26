@@ -1,3 +1,4 @@
+import 'package:everytime_clone/view/post_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class PreviewPost extends StatelessWidget{
       margin: EdgeInsets.only(left: 10, right: 10),
       padding: EdgeInsets.only(bottom: 10, top: 10),
       child: FlatButton(
-        onPressed: ()=>{},
+        onPressed: ()=>{Navigator.push(context, CupertinoPageRoute(builder: (context)=>PostPage()))},
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
