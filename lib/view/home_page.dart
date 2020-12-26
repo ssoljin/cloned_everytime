@@ -1,8 +1,10 @@
 import 'package:everytime_clone/customed_ui/post_collection.dart';
-import 'package:everytime_clone/data/current_popular_post.dart';
 import 'package:everytime_clone/data/everytime_widget.dart';
+import 'package:everytime_clone/data/post.dart';
 import 'package:everytime_clone/data/preview_board.dart';
 import 'package:everytime_clone/data/shortcut.dart';
+import 'package:everytime_clone/view/post_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget{
@@ -39,11 +41,16 @@ class _HomePageState extends State<HomePage>{
     PreviewBoard('새내기게시판', '아 몰라 나 여기 나가기 싫어', true),
     PreviewBoard('서울캠 장터게시판', '칼하트 후드집업👶', true),
   ];
-  List<Widget> _popularPostList = [
-    CurrentPopularPost('익명', '🦔당신은 돌아온 학점도치와 눈을 마주쳤습니다.🦔', '12/22 23:53', '공감을 누른다면 28일에,\n A와 A+로 가득 차있는 걸 볼 수 있습니다.🦔', '서울캠 자유게시판', 414, 14),
-    CurrentPopularPost('익명', null, '12/22 23:53', 'ㅋㅋㅋㅋㅋ21학번들 익명으로 되어있으면 진짜 이름 안보이는줄 아는거 너무 귀엽다', '서울캠 자유게시판', 414, 14),
-  ];
+  List<Widget> _popularPostList;
 
+  @override
+  void initState() {
+    super.initState();
+    _popularPostList =[
+      _buildCurrentPopularPost(Post('익명', '🦔당신은 돌아온 학점도치와 눈을 마주쳤습니다.🦔', '공감을 누른다면 28일에,\n A와 A+로 가득 차있는 걸 볼 수 있습니다.🦔', '12/22 23:53', 414, 14)),
+      _buildCurrentPopularPost(Post('익명', null, 'ㅋㅋㅋㅋㅋ21학번들 익명으로 되어있으면 진짜 이름 안보이는줄 아는거 너무 귀엽다', '12/22 23:29', 123, 1)),
+    ];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,5 +155,50 @@ class _HomePageState extends State<HomePage>{
     );
   }
 
+  Widget _buildCurrentPopularPost(Post post) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 15),
+      child: FlatButton(
+        onPressed: ()=>{Navigator.push(context, CupertinoPageRoute(builder: (context)=>PostPage(post)))},
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(post.userName, style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text(post.time, style: TextStyle(fontSize: 13, color: Colors.grey),),
+                ],
+              ),
+            ),
+            post.title!=null?Text(post.title, overflow: TextOverflow.ellipsis, style: TextStyle(fontWeight: FontWeight.bold),):Container(),
+            Text(post.content, maxLines: 2, overflow: TextOverflow.ellipsis,),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(post.boardName, style: TextStyle(fontSize: 13, color: Colors.grey),),
+                  Container(
+                    child: Row(
+                      children: [
+                        Icon(Icons.thumb_up_alt_outlined, color: Colors.red, size: 15,),
+                        Text(post.likeNum.toString(), style: TextStyle(color: Colors.red, fontSize: 13),),
+                        Text(' '),
+                        Icon(Icons.mode_comment_outlined, color: Colors.greenAccent, size: 15,),
+                        Text(post.comments.length.toString(), style: TextStyle(color: Colors.greenAccent, fontSize: 13),),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+
+    );
+  }
 }
 
